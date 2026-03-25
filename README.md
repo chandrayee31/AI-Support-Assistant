@@ -1,117 +1,189 @@
-AI Support Assistant Demo
+# 🚀 AI Support Assistant 
 
-AI Support Assistant is a conversational AI application that simulates a customer support assistant using a Large Language Model (LLM). The system processes user queries and generates contextual responses to assist users with common support-related questions.
+AI Support Assistant is an end-to-end AI-powered retail analytics assistant that helps store owners analyze sales data, understand trends, and make smarter stocking decisions. The system allows users to upload sales datasets (CSV/XLSX), ask natural language questions, and receive structured business insights powered by Python analytics and intelligent routing.
 
-This project demonstrates how generative AI models can be integrated into applications to automate customer support workflows and improve user experience.
+Built with FastAPI and React, the project demonstrates a practical combination of data engineering, backend systems, and AI-driven interaction for real-world retail decision-making.
 
-Overview
+## ✨ Key Features
+- 📂 Upload sales data (.csv / .xlsx)
+- 🔄 Multi-dataset support with active dataset selection
+- 🧠 Question intent detection (rule-based NLP layer)
+- 📊 Sales analytics using Pandas
+- 🛒 Restock & no-restock recommendations
+- 📈 Revenue & top-selling insights
+- 🤖 LLM fallback (Ollama) for general queries
+- 🎯 Structured, clean response formatting
+- 🌐 React-based chat UI
+- ⚡ FastAPI backend
+---
+## 🧭 Why Choose This Project
+- Combines Data Engineering + Backend + AI
+- Focuses on real business use case (retail analytics)
+- No heavy frameworks → clean, understandable architecture
+- Demonstrates custom orchestration instead of LangChain
+- Strong portfolio project for:
+- Data Engineer
+- Backend Engineer
+- AI Engineer
+---
 
-Customer support teams often receive repetitive questions related to account management, troubleshooting, or product usage. AI Support Assistant showcases how a conversational AI system can respond to such queries automatically.
+## 🏗️ System Architecture
+```
+User (React UI)
+   ↓
+FastAPI Backend (main.py)
+   ↓
+Orchestrator (process_question)
+   ↓
+Question Analyzer (intent detection)
+   ↓
+Routing Logic
+   ↓
+Sales Analyzer (business logic)
+   ↓
+Sales Data Loader (active dataset)
+   ↓
+Response Formatter
+   ↓
+UI Response (Chat)
+```
+---
+## 🎬 Demo
+<!-- Add your GIF here --> 
 
-The assistant interprets user input, constructs structured prompts for the language model, and returns helpful responses that simulate a real support interaction.
+<p align="center"> <img src="readme_docs/ai-assistant-demo-architecture.gif" width="800"/> </p>
+---
 
-Architecture
-User Query
-    ↓
-Prompt Builder
-    ↓
-Large Language Model
-    ↓
-AI-generated Response
-Key Features
-
-Conversational AI support assistant
-
-Prompt-based interaction with a large language model
-
-Context-aware response generation
-
-Demonstrates generative AI integration in applications
-
-Modular design for prompt handling and response generation
-
-Easy to extend for real customer support systems
-
-Tech Stack
-
-Python
-
-Large Language Models (LLM)
-
-Prompt Engineering
-
-Generative AI APIs / Models
-
-Example Interaction
-
-User Input:
-
-How do I reset my password?
-
-AI Response:
-
-You can reset your password by clicking the “Forgot Password” option on the login page. 
-Follow the instructions sent to your registered email to create a new password.
-Project Structure
-ai-support-assistant-demo
-│
-├── assistant.py
-├── prompt_builder.py
-├── requirements.txt
-└── README.md
-
-(Structure may vary depending on your implementation.)
-
-How It Works
-
-The user submits a question to the support assistant.
-
-The system constructs a prompt for the LLM.
-
-The LLM generates a response based on the prompt.
-
-The response is returned to the user.
-
-Running the Project
-
-Clone the repository:
-
-git clone https://github.com/chandrayee31/ai-support-assistant-demo.git
-
-Install dependencies:
-
+## ⚡ Quick Start
+Install dependencies
+```
 pip install -r requirements.txt
+```
+## Run Backend
+```
+uvicorn app.main:app --reload
 
-Run the assistant:
+```
+## Run Frontend
+```
+cd chat-ui
+npm install
+npm start
+```
+## Open Swagger
+```
+http://127.0.0.1:8000/docs
+```
+---
+## 🧩 Example Usage
+# Ask a Question
+```
+POST /query
+{
+  "question": "What should I restock tomorrow?"
+}
+Response
+{
+  "answer": "Restock Recommendations:\n- bananas: restock ~12 units\n- milk: restock ~10 units"
+}
+```
+---
+## 🗂️ Project Structure
+```
+ai-support-assistant-demo/
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── orchestrator.py
+│   │   ├── question_analyzer.py
+│   │   ├── sales_analyzer.py
+│   │   ├── sales_data_loader.py
+│   │   ├── prompt_generator.py
+│   │   ├── llm_client.py
+│   │   ├── file_state.py
+│   │   └── uploaded_files/
+│   ├── requirements.txt
+│
+├── chat-ui/
+│   ├── src/App.js
+│   ├── App.css
+│   └── package.json
+│
+├── readme_docs/
+│   └── demo.gif
+│
+└── README.md
+```
 
-python assistant.py
-Use Cases
+## ⚡ Quick Start
 
-This project demonstrates how generative AI can be applied to:
+```bash
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+---
 
-Customer support automation
+## 🔌 API Endpoints
+Upload Sales File
+```
+POST /upload-sales
+```
 
-Help desk assistants
+## Ask Question
+```
+POST /query
+```
+## List Uploaded Files
+```
+GET /uploaded-files
+```
+## Set Active File
+```
+POST /set-active-file
+```
+---
 
-FAQ bots
+## ⚙️ How It Works
+User uploads sales dataset
+System stores and sets active file
+User asks a question
+Question analyzer detects intent
+Orchestrator routes to correct logic
+Sales analyzer processes data
+Data loader fetches active dataset
+Response is formatted
+Answer returned to UI
 
-Knowledge-based support systems
+---
 
-Internal IT support tools
+## 🧠 Tech Stack
 
-Future Improvements
+- FastAPI
+- React
+- Pandas
+- Python
+- Ollama
 
-Add conversation memory
+---
 
-Integrate knowledge base retrieval (RAG)
+## 🔥 Summary
 
-Add web interface or chat UI
+Upload → Ask → Analyze → Get Insights
 
-Deploy as an API service
+---
 
-Integrate with customer support platforms
+## 🚀 Future Improvements
+🔮 Predictive analytics (seasonal demand, trends)
+📅 Time-based insights (monthly / weekly forecasting)
+🌦️ Context-aware recommendations (weather, events)
+📊 Advanced dashboards
+🧠 Improved NLP-based question analyzer
+🗄️ Optional vector DB for document intelligence
+🤖 Multi-agent architecture (RetailRAG-AI vision)
 
-Author
+
+📬 Contact
 
 Chandrayee Kumar
-Python Developer | AI/ML Enthusiast
+Lead Software Engineer | AI Systems | Data Engineering
