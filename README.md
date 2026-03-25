@@ -48,10 +48,13 @@ Response Formatter
 UI Response (Chat)
 ```
 ---
+
+
 ## 🎬 Demo
 <!-- Add your GIF here --> 
 
 <p align="center"> <img src="readme_docs/ai-assistant-demo-architecture.gif" width="800"/> </p>
+
 ---
 
 ## ⚡ Quick Start
